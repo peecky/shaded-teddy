@@ -7,9 +7,8 @@
 #include <OpenGL/gl.h>
 #include <GLUT/glut.h>
 #else
-#include <windows.h>
-#include <gl/glut.h>
-#include <gl/gl.h>
+#include <GL/glut.h>
+#include <GL/gl.h>
 #endif
 
 #include <cmath>

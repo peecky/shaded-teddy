@@ -1,8 +1,15 @@
+UNAME := $(shell uname -s)
 CC = g++
 OBJ = game.o kuma.o main.o map.o
+LDFLAGS = -lGL -lGLU -lglut
+
+# Mac OS
+ifeq ($(UNAME), Darwin)
+	LDFLAGS = -framework OpenGL -framework glut
+endif
 
 shaded_teddy : $(OBJ)
-	$(CC) -o shaded_teddy $(OBJ) -L/usr/X11R6/lib -lglut -lgl -lglu
+	$(CC) -o shaded_teddy $(OBJ) $(LDFLAGS)
 
 game.o : game.cpp game.h map.h kuma.h
 	$(CC) -c -g game.cpp

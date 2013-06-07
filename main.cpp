@@ -4,14 +4,14 @@
 #include <OpenGL/gl.h>
 #include <GLUT/glut.h>
 #else
-#include <windows.h>
-#include <gl/gl.h>
-#include <gl/glut.h>
+#include <GL/gl.h>
+#include <GL/glut.h>
 #endif
 
 #include <fstream>
 #include <iostream>
 #include <cstdio>
+#include <cstring>
 
 #include "game.h"
 
