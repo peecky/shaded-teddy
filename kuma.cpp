@@ -182,7 +182,7 @@ void Teddy::count()
 	double temp;
 	int temp2;
 	
-	obj.open("teddy.obj", ios::in);
+	obj.open("teddy.obj", std::ios::in);
 	if(!obj) {
 		//MessageBox(NULL, "Cannot find teddy.obj", "Error", MB_ICONERROR | MB_OK);
 		std::cerr << "Cannot find teddy.obj" << std::endl;
@@ -202,7 +202,7 @@ void Teddy::count()
 	}
 	obj.close();
 	
-	obj.open( "teddy.obj", ios::in );
+	obj.open( "teddy.obj", std::ios::in );
 	vertex = new GLdouble * [number];
 	vertex_n = new GLdouble*[number];
 	
@@ -246,7 +246,7 @@ void Teddy::count()
 	}
 	obj.close();
 	
-	obj.open( "teddy.obj", ios::in );
+	obj.open( "teddy.obj", std::ios::in );
 	face = new int * [number];
 	normal_v = new GLdouble*[number];
 	

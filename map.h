@@ -1,17 +1,17 @@
 // map.h
-#include<stdlib.h>
-#include<time.h>
+#include <stdlib.h>
+#include <time.h>
 
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
 #include <GLUT/glut.h>
 #else
-#include<windows.h>
-#include<gl/gl.h>
+#include <windows.h>
+#include <gl/gl.h>
 #include <gl/glut.h>
 #endif
 
-#include <iostream.h>
+#include <iostream>
 
 #ifndef __pi_piano_MAP_H__
 #define __pi_piano_MAP_H__

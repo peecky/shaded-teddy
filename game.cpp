@@ -185,8 +185,8 @@ void write_number( int score ){
 	}
 }
 
-void write_words( char *string ){
-	while( *string != NULL ){
+void write_words( const char *string ){
+	while( *string != '\0' ){
 		glutBitmapCharacter( GLUT_BITMAP_TIMES_ROMAN_24 , *string );
 		string++;
 	}
