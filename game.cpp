@@ -63,21 +63,21 @@ static int timeGetTime() {
 
 void Game::tile_set(){
 	static int Normal[] = { 0, 0, 1 };
-	
+
 	glEnable(GL_TEXTURE_2D);
 
 	glEnable(GL_LIGHTING);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHT0);
-	
+
 	glEnable( GL_TEXTURE_2D );
-	glBindTexture( GL_TEXTURE_2D, tile_id[TILE] ); 
-	
+	glBindTexture( GL_TEXTURE_2D, tile_id[TILE] );
+
 	//glTranslatef( -(MAP_WIDTH * FIGURE_SIZE) / 2.0, -(MAP_HEIGHT * FIGURE_SIZE) / 2.0, -1.2 );
-	
+
 	glEnable(GL_NORMALIZE);
 	glShadeModel( GL_FLAT );
-	
+
 	glBegin( GL_POLYGON );
 	glNormal3iv(Normal);
 	glTexCoord2f( 0,1 ), glVertex3f( 0, 0, 0 );
@@ -86,14 +86,14 @@ void Game::tile_set(){
 	glTexCoord2f( 0,0 ), glVertex3f( 0, MAP_HEIGHT * FIGURE_SIZE, 0 );
 	glEnd();
 	glDisable(GL_TEXTURE_2D);
-	
+
 	glDisable(GL_LIGHTING);
 	glDisable(GL_NORMALIZE);
 	glDisable(GL_DEPTH_TEST);
 	glDisable(GL_LIGHT0);
 	glDisable(GL_NORMALIZE);
-	
-	
+
+
 }
 
 void draw_floor(){
@@ -149,7 +149,7 @@ void Game::Display()
 	glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, light1_direction);
 	tile_set();
 	glPopMatrix();
-	
+
 	if(state == START) {
 		kuma->Draw(false, shade_type);
 		DrawMap();
@@ -158,7 +158,7 @@ void Game::Display()
 		kuma->Draw(true, shade_type);
 		DrawMap();
 	}
-	
+
 
 	glDisable(GL_DEPTH_TEST);
 	Write_score();
@@ -197,19 +197,19 @@ void Game::Write_combo(){
 	glLoadIdentity();
 	if( state == Game::END ) glColor3f( ( rand()%256 / 255.0 ),( rand()%256 / 255.0 ),( rand()%256 / 255.0 ) );
 	else glColor3f( 0.0, 1.0, 0.0 );
-	
+
 	glRasterPos2f( -2, 8 );
 	write_words( "Max combo : " );
 	write_number( map.show_combomx() );
 	if( map.show_combo() < 2 ) return;
-	
+
 	if( map.show_combo() >= 10 && map.show_combo() < 20 ) glColor3f( 251/255.0, 216/255.0, 51/255.0 );
 	else if( map.show_combo() >= 20 && map.show_combo() < 30) glColor3f( 255/255.0, 128/255.0, 0/255.0 );
 	else if( map.show_combo() >= 30 ) glColor3f( 1.0, 0.0, 0.0 );
 	else glColor3f( 0.5, 0.5, 0.5 );
 
 	glRasterPos2f( -2, 9 );
-	write_number( map.show_combo() ); 
+	write_number( map.show_combo() );
 	write_words( "Combo!!" );
 }
 
@@ -233,7 +233,7 @@ void Game::Write_score(){
 	else glColor3f( 0.5, 0.2, 0.0 );
 
 	glRasterPos2f( -2, -8 );
-	write_words( "Score : " ); 
+	write_words( "Score : " );
 	write_number( score );
 
 	glRasterPos2f( -3, -9 );
@@ -242,16 +242,16 @@ void Game::Write_score(){
 
 	glColor3f( 0.5, 0.9, 0.3 );
 	glRasterPos2f( -8, -8 );
-	write_words( "LEVEL : " ); 
+	write_words( "LEVEL : " );
 
 	if( level<20 ) write_number( level );
 	else write_words( "HELL MODE" );
 }
 
-	
+
 
 void Game::DrawTeddy(){
-	kuma = new Teddy( cursor_x, cursor_y, Teddy::down ); 
+	kuma = new Teddy( cursor_x, cursor_y, Teddy::down );
 }
 
 void Game::Idle()
@@ -260,7 +260,7 @@ void Game::Idle()
 		Display();
 		return;
 	}
-	
+
 	switch(state) {
 	case INIT:
 		Initialize();
@@ -284,7 +284,7 @@ void Game::Reshape(int w, int h)
 	glMatrixMode( GL_PROJECTION );
 	glLoadIdentity();
 	glOrtho(-view_pix, view_pix, -view_pix, view_pix, -view_pix, view_pix);
-	
+
 	glMatrixMode ( GL_MODELVIEW );
 	glLoadIdentity();
 }
@@ -293,7 +293,7 @@ void Game::SpecialKey(int key, int x, int y)
 {
 	if(work == false) return;
 	if( teddy_moving == true) return;	// while moving, ignore input
-	
+
 	switch(key) {
 	case GLUT_KEY_UP:
 		if(cursor_y >= MAP_HEIGHT-1) break;	// bound check
@@ -371,7 +371,7 @@ void Game::KeyInput(unsigned char key, int x, int y)
 	else if(key == 'a' || key == 'A') theta -= VIEW_THETA;
 	else if(key == 'W' || key == 'w') phi += VIEW_PHI;
 	else if(key == 's' || key == 'S') phi -= VIEW_PHI;
-	
+
 	if(phi >= LIMIT_PHI) phi = LIMIT_PHI;
 	else if(phi <= -LIMIT_PHI) phi = -LIMIT_PHI;
 	if(view_pix <= 2.5) view_pix = 2.5;
@@ -382,7 +382,7 @@ void Game::KeyInput(unsigned char key, int x, int y)
 	eye_z = sin(phi);
 
 	Reshape(window_w, window_h);
-	
+
 	Idle();
 }
 
@@ -422,7 +422,7 @@ void Game::RunGame()
 
 	figure_moving = map.Update();
 	if( teddy_moving == true ) teddy_moving = kuma->Move();
-	
+
 	int temp_score = map.ScoreUpdate();
 	score += map.show_combo() * map.show_combo() * temp_score * temp_score;
 	playtime += TIMEFACTOR / 1000.0;
@@ -458,7 +458,7 @@ void Game::DrawMap()
 	glEnable(GL_NORMALIZE);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHT0);
-	
+
 	if(Light_Mode){
 		glEnable(GL_LIGHT1);
 		glShadeModel( GL_SMOOTH );
@@ -478,13 +478,13 @@ void Game::DrawMap()
 		}
 	}
 	glPopMatrix();
-	
+
 	glDisable(GL_TEXTURE_2D);
 	glDisable(GL_NORMALIZE);
 	glDisable(GL_DEPTH_TEST);
 	glDisable(GL_LIGHTING);
 	glDisable(GL_LIGHT0);
-	
+
 	if(Light_Mode) glDisable(GL_LIGHT1);
 
 }
@@ -524,7 +524,7 @@ void Game::setMatrixProperties(int x, int y)
 bool Game::checkGameOver()
 {
 	if( map.EMPTY( cursor_x, cursor_y ) == true )	return true;	// character밑에 firgure가 없을 때
-			
+
 	for(int i = 0; i < MAP_HEIGHT; i++)
 		for(int j = 0; j < MAP_WIDTH; j++)
 			if(map.EMPTY(j, i) == true || map.isFlash(j, i) == true)
