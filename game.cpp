@@ -108,6 +108,8 @@ void draw_floor(){
 
 void Game::Display()
 {
+	if (state == INIT) return;
+
 	glClearColor(BACK_R, BACK_G, BACK_B, 0.0);	// set Background color
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	glLoadIdentity();
