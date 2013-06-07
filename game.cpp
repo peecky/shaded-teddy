@@ -4,6 +4,8 @@
 
 #include "game.h"
 
+#include <sys/time.h>
+
 // initialize static members
 Game::State Game::state = INIT;
 bool Game::work = true;
@@ -48,6 +50,16 @@ extern GLfloat light1_diffuse[];
 extern GLfloat light1_direction[];
 
 extern GLuint	tile_id[];
+
+static int timeGetTime() {
+	static time_t init_sec = 0;
+	timeval tv;
+	gettimeofday(&tv, NULL);
+	if (init_sec == 0) {
+		init_sec = tv.tv_sec;
+	}
+	return (tv.tv_sec - init_sec) * 1000 + tv.tv_usec / 1000;
+}
 
 void Game::tile_set(){
 	static int Normal[] = { 0, 0, 1 };

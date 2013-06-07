@@ -3,13 +3,18 @@
 #ifndef KUMA_H
 #define KUMA_H
 
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <GLUT/glut.h>
+#else
 #include <windows.h>
 #include <gl/glut.h>
 #include <gl/gl.h>
+#endif
 
-#include <math.h>
-#include <fstream.h>
-#include <iostream.h>
+#include <cmath>
+#include <fstream>
+#include <iostream>
 
 #define Ted 1	// simple polygon
 #define VNormalTed 2	// polygon with vertex normal vector

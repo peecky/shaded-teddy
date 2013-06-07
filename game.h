@@ -3,9 +3,15 @@
 #ifndef __anopi_GAME_H__
 #define __anopi_GAME_H__
 
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <GLUT/glut.h>
+#else
 #include <windows.h>
 #include <gl/gl.h>
 #include <gl/glut.h>
+#endif
+
 #include <cstdlib>
 
 #include "map.h"

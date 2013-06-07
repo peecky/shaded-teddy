@@ -1,12 +1,17 @@
 // main.cpp
 
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <GLUT/glut.h>
+#else
 #include <windows.h>
 #include <gl/gl.h>
 #include <gl/glut.h>
+#endif
 
-#include <fstream.h>
-#include <iostream.h>
-#include <stdio.h>
+#include <fstream>
+#include <iostream>
+#include <cstdio>
 
 #include "game.h"
 
@@ -135,6 +140,7 @@ PPMdata* LoadASCIIPPMImage(char* filename, PPMdata* ppm)
 
 //초기 설정
 void init_gl_settings(void){
+	int i;
 
 	//필요한 그림 파일을 읽어들인다.
 	if(NULL == LoadASCIIPPMImage("1.ppm", &image[0])) exit(0);
@@ -155,7 +161,7 @@ void init_gl_settings(void){
 	glGenTextures( 6, tile_id );	//텍스쳐 생성
 
 	glShadeModel(GL_FLAT);
-	for( int i = 0; i < 6 ; i++ ){
+	for( i = 0; i < 6 ; i++ ){
 		glBindTexture(GL_TEXTURE_2D, texid[i]); 
 		glTexImage2D(GL_TEXTURE_2D, 0, 3, 2<<(MAX_LOD-1), 
 			2<<(MAX_LOD-1), 0, GL_RGB, GL_UNSIGNED_BYTE, image[i].data); 

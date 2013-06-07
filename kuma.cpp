@@ -176,15 +176,16 @@ void Teddy::Draw(bool isgameover, Shade shadetype)
 
 void Teddy::count()
 {
-	ifstream obj;
+	std::ifstream obj;
 	int number=0;
 	char check;
 	double temp;
 	int temp2;
 	
-	obj.open("teddy.obj", ios::nocreate);
+	obj.open("teddy.obj", ios::in);
 	if(!obj) {
-		MessageBox(NULL, "Cannot find teddy.obj", "Error", MB_ICONERROR | MB_OK);
+		//MessageBox(NULL, "Cannot find teddy.obj", "Error", MB_ICONERROR | MB_OK);
+		std::cerr << "Cannot find teddy.obj" << std::endl;
 		exit(0);
 	}
 	
@@ -201,12 +202,12 @@ void Teddy::count()
 	}
 	obj.close();
 	
-	obj.open( "teddy.obj", ios::nocreate );
+	obj.open( "teddy.obj", ios::in );
 	vertex = new GLdouble * [number];
 	vertex_n = new GLdouble*[number];
 	
 	//store the position of vertex
-	int i;
+	int i, j;
 	for( i = 0; i < number ; i++ ) {
 		vertex[i] = new GLdouble [6];
 		obj>>check;
@@ -245,7 +246,7 @@ void Teddy::count()
 	}
 	obj.close();
 	
-	obj.open( "teddy.obj", ios::nocreate );
+	obj.open( "teddy.obj", ios::in );
 	face = new int * [number];
 	normal_v = new GLdouble*[number];
 	
@@ -275,7 +276,7 @@ void Teddy::count()
 		GLdouble a[3], b[3];
 		
 		// cross product
-		for(int j = 0; j < 3; j++) {
+		for(j = 0; j < 3; j++) {
 			a[j] = vertex[face[i][0]][j] - vertex[face[i][1]][j];
 			b[j] = vertex[face[i][0]][j] - vertex[face[i][2]][j];
 		}
@@ -316,7 +317,8 @@ void Teddy::count()
 
 Teddy::~Teddy()
 {
-	for(int i = 0; i < face_num; i++) {
+	int i;
+	for(i = 0; i < face_num; i++) {
 		delete face[i];
 		delete normal_v[i];
 	}

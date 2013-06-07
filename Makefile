@@ -1,8 +1,8 @@
 CC = g++
-OBJ = game.o kuma.o main.o map.p teddy.o
+OBJ = game.o kuma.o main.o map.o
 
 shaded_teddy : $(OBJ)
-	$(CC) -o shaded_teddy $(OBJ)
+	$(CC) -o shaded_teddy $(OBJ) -L/usr/X11R6/lib -lglut -lgl -lglu
 
 game.o : game.cpp game.h
 	$(CC) -c -g game.cpp
@@ -15,9 +15,6 @@ main.o : main.cpp game.h
 
 map.o : map.cpp map.h
 	$(CC) -c -g map.cpp
-
-teddy.o : teddy.cpp
-	$(CC) -c -g tedy.cpp
 
 clean :
 	rm $(OBJ)
