@@ -57,7 +57,7 @@ Map::~Map()
 	}
 }
 
-//ÁÖ»çÀ§ÀÇ ¸Ç À§°ªÀ» ¸®ÅÏÇÑ´Ù.
+//ì£¼ì‚¬ìœ„ì˜ ë§¨ ìœ„ê°’ì„ ë¦¬í„´í•œë‹¤.
 int Map::getDICEtop(int x, int y)
 {
 	if( tile[y][x].isempty != true )
@@ -65,7 +65,7 @@ int Map::getDICEtop(int x, int y)
 	else return 0;
 }
 
-//ÁöÁ¤µÈ Å¸ÀÏ¿¡ ÁÖ»çÀ§¸¦ »ı¼ºÇÑ´Ù.¤Ó
+//ì§€ì •ëœ íƒ€ì¼ì— ì£¼ì‚¬ìœ„ë¥¼ ìƒì„±í•œë‹¤.ã…£
 void Map::setTile(int x, int y )
 {
 	int temp1, temp2, temp3;
@@ -79,7 +79,7 @@ void Map::setTile(int x, int y )
 	tile[y][x].num[north] = temp2;
 	tile[y][x].num[south] = 7-temp2;
 	
-	temp3 = rand()%6 + 1;			//ÁÖ»çÀ§ ´«Àº ·£´ıÀÌµÇ, ¾Õ¿¡ ÀÌ¹Ì »ı¼ºÇÑ°Í°ú´Â ´Ş¶ó¾ß ÇÑ´Ù.
+	temp3 = rand()%6 + 1;			//ì£¼ì‚¬ìœ„ ëˆˆì€ ëœë¤ì´ë˜, ì•ì— ì´ë¯¸ ìƒì„±í•œê²ƒê³¼ëŠ” ë‹¬ë¼ì•¼ í•œë‹¤.
 	while( temp1 == temp3||temp1 == 7 - temp3 || temp2 == temp3 || temp2 == 7-temp3)
 		temp3 = rand()%6 + 1;
 	tile[y][x].num[west] = temp3;
@@ -93,9 +93,9 @@ void Map::moveTile(int src_x, int src_y, int dst_x, int dst_y)
 	if(src_y < 0 || src_y >= MAP_HEIGHT) return;
 	if(dst_y < 0 || dst_y >= MAP_HEIGHT) return;
 
-	tile[dst_y][dst_x] = tile[src_y][src_x];	// Å¸ÀÏÀ» µ¤¾î ¾¸
+	tile[dst_y][dst_x] = tile[src_y][src_x];	// íƒ€ì¼ì„ ë®ì–´ ì”€
 	
-	// ¿øº» Å¸ÀÏÀº ÃÊ±âÈ­, except type
+	// ì›ë³¸ íƒ€ì¼ì€ ì´ˆê¸°í™”, except type
 	tile[src_y][src_x].isflash = false;
 	tile[src_y][src_x].ismoving = false;
 	tile[src_y][src_x].isred = false;
@@ -131,8 +131,8 @@ int Map::getMoveState(int x, int y)
 {
 	return tile[y][x].movestate;
 }
-//ÁÖ»çÀ§°¡ ÀÌµ¿ÇÏ¸é ±× ÀÌµ¿¿¡ ¸ÂÃß¾î ÁÖ»çÀ§ ´«ÀÇ °ªÀ» ¹Ù²Û´Ù.
-//ex ÁÖ»çÀ§ top°ªÀº À§·Î ÀÌµ¿ÇÏ¸é northÀÇ °ªÀÌ µÈ´Ù.
+//ì£¼ì‚¬ìœ„ê°€ ì´ë™í•˜ë©´ ê·¸ ì´ë™ì— ë§ì¶”ì–´ ì£¼ì‚¬ìœ„ ëˆˆì˜ ê°’ì„ ë°”ê¾¼ë‹¤.
+//ex ì£¼ì‚¬ìœ„ topê°’ì€ ìœ„ë¡œ ì´ë™í•˜ë©´ northì˜ ê°’ì´ ëœë‹¤.
 void Map::setDirection(int x, int y, Tile::Direction direction)
 {
 	int bottom_temp = tile[y][x].num[bottom];
@@ -195,7 +195,7 @@ bool Map::Update()
 		for(int j = 0; j < MAP_WIDTH; j++) {
 			int tempnumber = 1;
 			if(tile[i][j].isempty != true  && AdjacencyTest(j, i, tile[i][j].num[top], Tile::NONE, tempnumber) == true)
-				tile[i][j].isflash = true;	// °°Àº ´«ÀÌ 4°³ ¸ğ¿´À» °æ¿ì
+				tile[i][j].isflash = true;	// ê°™ì€ ëˆˆì´ 4ê°œ ëª¨ì˜€ì„ ê²½ìš°
 
 			if(tile[i][j].isflash == true) {
 				tile[i][j].isred = !(tile[i][j].isred);
@@ -272,7 +272,7 @@ void Map::draw_dice( int x, int y ){
 
 	for( int  i = 0; i < 6; i++ ){
 
-		//ÁÖ»çÀ§°¡ ¹İÂ¦°Å¸®´Â °æ¿ì¿¡ ÁÖ»çÀ§ÀÇ ºû¿¡ ´ëÇÑ ¼ºÁúÀ» ¹Ù²Ù¾î¼­ ÀÌ¸¦ Ç¥ÇöÇÑ´Ù.
+		//ì£¼ì‚¬ìœ„ê°€ ë°˜ì§ê±°ë¦¬ëŠ” ê²½ìš°ì— ì£¼ì‚¬ìœ„ì˜ ë¹›ì— ëŒ€í•œ ì„±ì§ˆì„ ë°”ê¾¸ì–´ì„œ ì´ë¥¼ í‘œí˜„í•œë‹¤.
 		if( tile[y][x].isflash == true && tile[y][x].isred == true) {
 			glMaterialfv(GL_FRONT, GL_AMBIENT, surface_ambient0);
 			glMaterialfv(GL_FRONT, GL_SPECULAR, surface_specular);
@@ -286,7 +286,7 @@ void Map::draw_dice( int x, int y ){
 		glMaterialf(GL_FRONT, GL_SHININESS, 100.0);
 		
 		glEnable( GL_TEXTURE_2D );
-		glBindTexture( GL_TEXTURE_2D, texid[ tile[y][x].num[i]-1 ] );	//bindµÇ´Â texture´Â ±× ¸éÀÇ °ª¿¡ ÀÇÇØ °áÁ¤
+		glBindTexture( GL_TEXTURE_2D, texid[ tile[y][x].num[i]-1 ] );	//bindë˜ëŠ” textureëŠ” ê·¸ ë©´ì˜ ê°’ì— ì˜í•´ ê²°ì •
 
 		glBegin( GL_POLYGON );
 		glNormal3iv(face_n[i]);

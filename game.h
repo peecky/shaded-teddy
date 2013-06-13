@@ -56,14 +56,14 @@ private:
 	static Teddy *kuma;
 
 	// game variables
-	static int cursor_x;	// ÁÖÀÎ°ø xÁÂÇ¥
-	static int cursor_y;	// ÁÖÀÎ°ø yÁÂÇ¥
+	static int cursor_x;	// ì£¼ì¸ê³µ xì¢Œí‘œ
+	static int cursor_y;	// ì£¼ì¸ê³µ yì¢Œí‘œ
 	static unsigned score;
 	static double playtime;
 
 	// view factors
 	static int window_w;	// window size of width
-	static int window_h;	// window size of height, Reshape()ÇÔ¼ö¸¦ ¸í½ÃÀûÀ¸·Î ºÎ¸¦ ¶§ »ç¿ë
+	static int window_h;	// window size of height, Reshape()í•¨ìˆ˜ë¥¼ ëª…ì‹œì ìœ¼ë¡œ ë¶€ë¥¼ ë•Œ ì‚¬ìš©
 	static double eye_x;
 	static double eye_y;
 	static double eye_z;

@@ -17,7 +17,7 @@
 
 #define MAX_LOD 6
 
-//texture´Â PPM µ¥ÀÌÅÍ¸¦ ÀÌ¿ëÇÑ´Ù.
+//textureëŠ” PPM ë°ì´í„°ë¥¼ ì´ìš©í•œë‹¤.
 typedef struct _PPMdata{
 	int imagewidth;
 	int imageheight;
@@ -40,7 +40,7 @@ static char* ptr = readbuf;
 static char* ptr2 = word;
 static FILE* texturefile;
 
-//ºûÀÇ ¼ºÁúÀ» °áÁ¤ÇØ ÁÖ´Â °ªµé
+//ë¹›ì˜ ì„±ì§ˆì„ ê²°ì •í•´ ì£¼ëŠ” ê°’ë“¤
 GLfloat light0_position[] = {0.0, 0.0, 10.0, 0.2};
 GLfloat light0_ambient[] = {0.7, 0.4, 0.7, 0.2};
 GLfloat light0_specular[] = {0.6, 0.7, 0.6, 0.2};
@@ -56,8 +56,8 @@ GLfloat light1_specular[] = {1.0, 0.7, 0.6, 0.2};
 GLfloat light1_diffuse[] = {1.0, 0.6, 0.6, 0.2};
 GLfloat light1_direction[] = {0.0, 0.0, -1};
 
-//get_word, LoadAsCIIPPMImage¿¡¼­ PPMÆÄÀÏÀ» ÀĞ¾î µéÀÌ°í
-//texture·Î »ç¿ëÇÒ ¼ö ÀÖ´Â »óÅÂ·Î ¸¸µç´Ù.
+//get_word, LoadAsCIIPPMImageì—ì„œ PPMíŒŒì¼ì„ ì½ì–´ ë“¤ì´ê³ 
+//textureë¡œ ì‚¬ìš©í•  ìˆ˜ ìˆëŠ” ìƒíƒœë¡œ ë§Œë“ ë‹¤.
 char* get_word( FILE * texturefile ){
 	while(1){
 		if(*ptr == '\0'){
@@ -138,11 +138,11 @@ PPMdata* LoadASCIIPPMImage(const char* filename, PPMdata* ppm)
 	return ppm;
 }
 
-//ÃÊ±â ¼³Á¤
+//ì´ˆê¸° ì„¤ì •
 void init_gl_settings(void){
 	int i;
 
-	//ÇÊ¿äÇÑ ±×¸² ÆÄÀÏÀ» ÀĞ¾îµéÀÎ´Ù.
+	//í•„ìš”í•œ ê·¸ë¦¼ íŒŒì¼ì„ ì½ì–´ë“¤ì¸ë‹¤.
 	if(NULL == LoadASCIIPPMImage("1.ppm", &image[0])) exit(0);
 	if(NULL == LoadASCIIPPMImage("2.ppm", &image[1])) exit(0);
 	if(NULL == LoadASCIIPPMImage("3.ppm", &image[2])) exit(0);
@@ -158,7 +158,7 @@ void init_gl_settings(void){
 
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
     glGenTextures( 6, texid );
-	glGenTextures( 6, tile_id );	//ÅØ½ºÃÄ »ı¼º
+	glGenTextures( 6, tile_id );	//í…ìŠ¤ì³ ìƒì„±
 
 	glShadeModel(GL_FLAT);
 	for( i = 0; i < 6 ; i++ ){
@@ -184,7 +184,7 @@ void init_gl_settings(void){
 
 	glEnable(GL_TEXTURE_2D);
 
-	//¶óÀÌÆ®ÀÇ ÃÊ±â ¼³Á¤À» ÇØÁØ´Ù.
+	//ë¼ì´íŠ¸ì˜ ì´ˆê¸° ì„¤ì •ì„ í•´ì¤€ë‹¤.
 	glEnable(GL_LIGHTING);
 	glEnable(GL_NORMALIZE);
 	glEnable(GL_DEPTH_TEST);
