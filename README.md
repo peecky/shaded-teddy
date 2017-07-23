@@ -2,15 +2,15 @@ Shaded Teddy
 ============
 A 3D puzzle game to destroy randomly generated dice.
 
-![image](http://i1138.photobucket.com/albums/n532/pidiom/shaddedteddyscreenshot.png)
+![screenshot](https://peecky.github.io/shaded-teddy/screenshots/shaddedteddyscreenshot.png)
 
 ## How to ##
 Move the die beneath the Teddy. Make 4 contiguous dice with same number and then they will be destroyed. Only the numbers of the top of dice are effective.
-![image](http://i1138.photobucket.com/albums/n532/pidiom/shaddedteddydestroingblocks.png)
+![destroying blogs](https://peecky.github.io/shaded-teddy/screenshots/shaddedteddydestroingblocks.png)
 
 Dice are randomly generated. If the game board is full of dice, the game is over. If the die beneath the Teddy is destroyed, also, the game is over. Before the die is destroyed, Teddy should move to another die.
-![image](http://i1138.photobucket.com/albums/n532/pidiom/shaddedteddygameovermissingblock.png)
-![image](http://i1138.photobucket.com/albums/n532/pidiom/shaddedteddygameoverfullofblocks.png)
+![game over by falling](https://peecky.github.io/shaded-teddy/screenshots/shaddedteddygameovermissingblock.png)
+![game over by full of blocks](https://peecky.github.io/shaded-teddy/screenshots/shaddedteddygameoverfullofblocks.png)
 
 ## Control Keys ##
 *	Move: Arrow Keys
@@ -22,4 +22,4 @@ Dice are randomly generated. If the game board is full of dice, the game is over
 *	Render the Teddy in several ways: 1 2 3 4
 *	Change Background: t
 
-![image](http://i1138.photobucket.com/albums/n532/pidiom/shaddedteddyhelloworld.png)
+![hello to wold](https://peecky.github.io/shaded-teddy/screenshots/shaddedteddyhelloworld.png)
